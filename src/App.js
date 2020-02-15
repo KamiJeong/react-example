@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import * as commonUtils from './utils/common';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import TodoList from './components/TodoList';
+import Btn from './components/Btn';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todoList: [
+        { id: 1, text: 'name 1' },
+        { id: 2, text: 'name 2' },
+        { id: 3, text: 'name 3' },
+        { id: 4, text: 'name 4' },
+      ],
+      btnText: 'Primary',
+    };
+  }
+
+  onClickPrimaryBtn = () => {
+    this.setState({ btnText: 'wawa' }, () => commonUtils.alertMessage('wawawa'));
+  };
+
+  render() {
+    const { todoList, btnText } = this.state;
+    return (
+      <div>
+        <Btn className="default">Default</Btn>
+        <Btn className="primary" color="primary" onClick={this.onClickPrimaryBtn}>
+          {btnText}
+        </Btn>
+        <Btn className="danger" color="danger" onClick={() => commonUtils.alertMessage('danger')}>
+          Danger
+        </Btn>
+        {/* Input */}
+        <div>
+          <form action={e => e.preventDefault()}>
+            <input type="text" /> <button type="button">button</button>
+          </form>
+        </div>
+        {/* Todos */}
+        <TodoList list={todoList} />
+      </div>
+    );
+  }
 }
 
 export default App;
