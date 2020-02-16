@@ -4,7 +4,9 @@
     "paths": {
       "components/*": ["./components/*"],
       "utils/*": ["./utils/*"],
-      "containers/*": ["./containers/*"]
+      "containers/*": ["./containers/*"],
+      "include/*": ["./include/*"],
+      "images/*": ["./images/*"]
     },
     "target": "ES6",
     "jsx": "preserve",
